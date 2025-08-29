@@ -8,14 +8,16 @@ const App = () => {
   return (
     <>
       <h1>Give feedback</h1>
-      <button>Good</button>
-      <button>Neutral</button>
-      <button>Bad</button>
+      <Button text="Good" />
+      <Button text="Neutral" />
+      <Button text="Bad" />
 
-      <Statistics stats={{good, neutral, bad}} />
+      <Statistics stats={{ good, neutral, bad }} />
     </>
   );
 };
+
+const Button = ({text}) => <button> {text} </button>
 
 const Statistics = ({stats}) => {
 
@@ -36,15 +38,18 @@ const Statistics = ({stats}) => {
     <div>
       <h2>Statistics</h2>
 
-      <p>Good  {good} </p>
-      <p>Neutral {neutral} </p>
-      <p>Bad  {bad} </p>
+      <StatisticLine text="Good" value={good}/>
+      <StatisticLine text="Neutral" value={neutral}/>
+      <StatisticLine text="Bad" value={bad}/>
 
-      <p>All {total}  </p>
-      <p>Average {average} </p>
-      <p>Positive {positive} %</p>
+      <StatisticLine text="All" value={total}/>
+      <StatisticLine text="Average" value={average}/>
+      <StatisticLine text="Positive" value={`${positive}%`}/>
+
     </div>
   );
 }
+
+const StatisticLine = ({text, value}) => <p> {text} {value} </p>
 
 export default App;

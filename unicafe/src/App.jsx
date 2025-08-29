@@ -1,9 +1,9 @@
 import { useState } from "react";
 
 const App = () => {
-  const [good, setGood] = useState(6);
-  const [neutral, setNeutral] = useState(2);
-  const [bad, setBad] = useState(1);
+  const [good, setGood] = useState(0);
+  const [neutral, setNeutral] = useState(0);
+  const [bad, setBad] = useState(0);
 
   return (
     <>
@@ -23,6 +23,14 @@ const Statistics = ({stats}) => {
   const total = good + neutral + bad;
   const average = (good - bad) / total;
   const positive = (good / total) * 100;
+
+  if (total === 0) {
+    return (
+      <>
+        <p>No feedback given</p>
+      </>
+    )
+  }
 
   return (
     <div>

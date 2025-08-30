@@ -59,6 +59,11 @@ const App = () => {
     setAnecdotes(updatedAnecdotes);
   }
 
+  const mostVotedAnecdote = anecdotes.reduce(
+    (max, anecdote) => anecdote.votes > max.votes ? anecdote : max, 
+    {votes: 0}
+  )
+  
   return (
     <div>
       <h3>{anecdotes[selected].anecdote}</h3>
@@ -66,6 +71,14 @@ const App = () => {
 
       <button onClick={voteAnecdote}>Vote</button>
       <button onClick={nextAnecdote}>Next anecdote</button>
+
+      {mostVotedAnecdote.votes !== 0 && (
+        <>
+          <h3>Anecdote with most votes</h3>
+          <p> {mostVotedAnecdote.anecdote} </p>
+          <p> Has {mostVotedAnecdote.votes} votes </p>
+        </>
+      )}
     </div>
   );
 };

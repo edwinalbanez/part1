@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const App = () => {
-  const [good, setGood] = useState(0);
+  const [good, setGood] = useState(1);
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
 
@@ -38,18 +38,26 @@ const Statistics = ({stats}) => {
     <div>
       <h2>Statistics</h2>
 
-      <StatisticLine text="Good" value={good}/>
-      <StatisticLine text="Neutral" value={neutral}/>
-      <StatisticLine text="Bad" value={bad}/>
+      <table>
+        <tbody>
+          <StatisticLine text="Good" value={good} />
+          <StatisticLine text="Neutral" value={neutral} />
+          <StatisticLine text="Bad" value={bad} />
 
-      <StatisticLine text="All" value={total}/>
-      <StatisticLine text="Average" value={average}/>
-      <StatisticLine text="Positive" value={`${positive}%`}/>
-
+          <StatisticLine text="All" value={total} />
+          <StatisticLine text="Average" value={average} />
+          <StatisticLine text="Positive" value={`${positive}%`} />
+        </tbody>
+      </table>
     </div>
   );
 }
 
-const StatisticLine = ({text, value}) => <p> {text} {value} </p>
+const StatisticLine = ({ text, value }) => (
+  <tr>
+    <td>{text}</td>
+    <td>{value}</td>
+  </tr>
+);
 
 export default App;
